@@ -1,7 +1,7 @@
 <?php
 
 /*
-The task is to write a function which returns the sum of following series upto nth term(parameter).
+The task is to write a function which returns the sum of following series upto nth term (parameter).
 Series: 1 + 1/4 + 1/7 + 1/10 + 1/13 + 1/16 +...
 Rules:
 - You need to round the answer to 2 decimal places and return it as String.
@@ -21,9 +21,12 @@ class SeriesSumTest extends TestCase
     /** @test */
     public function it_returns_sum_of_following_series()
     {
+        $this->assertEquals('0.00', new SeriesSum(0));
         $this->assertEquals('1.00', new SeriesSum(1));
         $this->assertEquals('1.25', new SeriesSum(2));
         $this->assertEquals('1.39', new SeriesSum(3));
         $this->assertEquals('1.49', new SeriesSum(4));
+        $this->assertEquals('1.57', new SeriesSum(5));
+        $this->assertEquals('1.81', new SeriesSum(10));
     }
 }

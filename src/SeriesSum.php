@@ -5,13 +5,28 @@ namespace App;
 class SeriesSum
 {
 
+    private $number;
+
     public function __construct(int $number)
     {
-        $this->sum($number);
+        $this->number = $number;
     }
 
-    public function sum(int $number): float
+    public function __toString()
     {
-        return $number;
+        return $this->sum();
+    }
+
+    private function sum()
+    {
+        $array    = [];
+        $division = 1;
+
+        for ($i = 1; $i <= $this->number; $i++) {
+            $array[] = (1 / $division);
+            $division += 3;
+        };
+
+        return number_format(array_sum($array), 2, '.', '');
     }
 }
