@@ -22,7 +22,7 @@ use PHPUnit\Framework\TestCase;
 class CountSmileysTest extends TestCase
 {
     /** @test */
-    public function it_works()
+    public function it_returns_only_valid_smileys()
     {
         $counter = new CountSmileys;
 
