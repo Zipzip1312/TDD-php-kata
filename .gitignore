@@ -1,0 +1,5 @@
+vendor/
+.editorconfig
+*.sublime-*
+.phpintel/
+.DS_Store
