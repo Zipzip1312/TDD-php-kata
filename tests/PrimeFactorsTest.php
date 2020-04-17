@@ -8,10 +8,6 @@
             5       5
 
 100 => 2 * 2 * 5 * 5
-
-1. Is the number divisible by 2
-2. If true, divide by 2. If false, increase a candidate and try again.
-3. Repeat
  */
 
 use App\PrimeFactors;
@@ -42,5 +38,13 @@ class PrimeFactorsTest extends TestCase
         $factors = new PrimeFactors;
 
         $this->assertEquals([3], $factors->generate(3), '3 is a prime number so it should return array with 3');
+    }
+
+    /** @test */
+    public function it_generates_prime_factors_for_4()
+    {
+        $factors = new PrimeFactors;
+
+        $this->assertEquals([2, 2], $factors->generate(4), '4 is not a prime number so it should return array [2, 2]');
     }
 }
