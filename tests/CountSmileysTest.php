@@ -7,6 +7,13 @@ Rules for a smiling face:
 - A smiley face can have a nose but it does not have to. Valid characters for a nose are - or ~
 - Every smiling face must have a smiling mouth that should be marked with either ) or D.
 No additional characters are allowed except for those mentioned.
+
+Valid smiley face examples:
+:) :D ;-D :~)
+
+Invalid smiley faces:
+;( :> :} :]
+
  */
 
 use App\CountSmileys;
@@ -22,6 +29,6 @@ class CountSmileysTest extends TestCase
         $this->assertEquals(0, $counter->count([]));
         $this->assertEquals(4, $counter->count([':D',':~)',';~D',':)']));
         $this->assertEquals(2, $counter->count([':)',':(',':D',':O',':;']));
-        $this->assertEquals(1, $counter->count([';]', ':[', ';*', ':$', ';-D']));
+        $this->assertEquals(1, $counter->count([';]', ':[', ';*', ':$', ';-D', ':))']));
     }
 }
