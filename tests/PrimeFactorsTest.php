@@ -13,38 +13,33 @@
 use App\PrimeFactors;
 use PHPUnit\Framework\TestCase;
 
-
 class PrimeFactorsTest extends TestCase
 {
-    /** @test */
-    public function it_generates_prime_factors_for_1()
+    /**
+     * @test
+     * @dataProvider factors
+     */
+    public function it_generates_prime_factors($num, $expected)
     {
         $factors = new PrimeFactors;
 
-        $this->assertEquals([], $factors->generate(1), 'There should be no prime factors for 1');
+        $this->assertEquals($expected, $factors->generate($num));
     }
 
-    /** @test */
-    public function it_generates_prime_factors_for_2()
+    public function factors()
     {
-        $factors = new PrimeFactors;
-
-        $this->assertEquals([2], $factors->generate(2), '2 is a prime number so it should return array with 2');
-    }
-
-    /** @test */
-    public function it_generates_prime_factors_for_3()
-    {
-        $factors = new PrimeFactors;
-
-        $this->assertEquals([3], $factors->generate(3), '3 is a prime number so it should return array with 3');
-    }
-
-    /** @test */
-    public function it_generates_prime_factors_for_4()
-    {
-        $factors = new PrimeFactors;
-
-        $this->assertEquals([2, 2], $factors->generate(4), '4 is not a prime number so it should return array [2, 2]');
+        return [
+            [1, []],
+            [2, [2]],
+            [3, [3]],
+            [4, [2, 2]],
+            [5, [5]],
+            [6, [2, 3]],
+            [8, [2, 2, 2]],
+            [9, [3, 3]],
+            [10, [2, 5]],
+            [100, [2, 2, 5, 5]],
+            [999, [3, 3, 3, 37]]
+        ];
     }
 }
