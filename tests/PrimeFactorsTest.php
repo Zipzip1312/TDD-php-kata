@@ -27,4 +27,20 @@ class PrimeFactorsTest extends TestCase
 
         $this->assertEquals([], $factors->generate(1), 'There should be no prime factors for 1');
     }
+
+    /** @test */
+    public function it_generates_prime_factors_for_2()
+    {
+        $factors = new PrimeFactors;
+
+        $this->assertEquals([2], $factors->generate(2), '2 is a prime number so it should return array with 2');
+    }
+
+    /** @test */
+    public function it_generates_prime_factors_for_3()
+    {
+        $factors = new PrimeFactors;
+
+        $this->assertEquals([3], $factors->generate(3), '3 is a prime number so it should return array with 3');
+    }
 }
