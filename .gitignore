@@ -3,3 +3,4 @@ vendor/
 *.sublime-*
 .phpintel/
 .DS_Store
+.idea/
