@@ -18,6 +18,25 @@ class RomanNumeralsTest extends TestCase
         $this->assertEquals($numeral, RomanNumerals::generate($number));
     }
 
+    /**
+     * @test
+     * @dataProvider checkInvalid
+     */
+    public function it_throws_exception_if_the_number_is_invalid($invalidNumber)
+    {
+        $this->expectException(\Exception::class);
+
+        RomanNumerals::generate($invalidNumber);
+    }
+
+    /** @test */
+    public function it_throws_exception_if_the_number_is_greater_than_3999()
+    {
+        $this->expectException(\Exception::class);
+
+        RomanNumerals::generate(4000);
+    }
+
     public function check()
     {
         return [
@@ -37,9 +56,26 @@ class RomanNumeralsTest extends TestCase
             [19, 'XIX'],
             [50, 'L'],
             [100, 'C'],
+            [190, 'CXC'],
+            [400, 'CD'],
             [500, 'D'],
             [900, 'CM'],
             [1000, 'M'],
+
+            [1674, 'MDCLXXIV'],
+            [2345, 'MMCCCXLV'],
+            [3444, 'MMMCDXLIV'],
+            [3999, 'MMMCMXCIX']
+        ];
+    }
+
+    public function checkInvalid()
+    {
+        return [
+            [0],
+            [-1],
+            ['string'],
+            [new stdClass]
         ];
     }
 }
