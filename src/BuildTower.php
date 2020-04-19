@@ -4,10 +4,22 @@ namespace App;
 
 class BuildTower
 {
-    public static function build(int $num): array
+    public static function build(int $floors): array
     {
-        $result = ['*'];
+        $tower = [];
+        $floorsAmount = $floors;
 
-        return $result;
+        while ($floorsAmount--):
+            $tower[] =  str_repeat(' ', $floorsAmount).
+                        str_repeat('**', $floors - $floorsAmount).
+                        str_repeat(' ', $floorsAmount);
+        endwhile;
+
+        for ($i = 0; $i < count($tower); $i++) {
+            $replace = '/'.preg_quote('**', '/').'/';
+            $tower[$i] =  preg_replace($replace, '*', $tower[$i], 1);
+        }
+
+        return $tower;
     }
 }

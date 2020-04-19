@@ -30,4 +30,44 @@ class BuildTowerTest extends TestCase
     {
         $this->assertEquals(['*'], BuildTower::build(1));
     }
+
+    /** @test */
+    public function build_tower_with_3_floors()
+    {
+        $this->assertEquals([
+            '  *  ',
+            ' *** ',
+            '*****'
+            ], BuildTower::build(3));
+    }
+
+    /** @test */
+    public function build_tower_with_6_floors()
+    {
+        $this->assertEquals([
+            '     *     ',
+            '    ***    ',
+            '   *****   ',
+            '  *******  ',
+            ' ********* ',
+            '***********'
+            ], BuildTower::build(6));
+    }
+
+    /** @test */
+    public function build_tower_with_10_floors()
+    {
+        $this->assertEquals([
+            "         *         ",
+            "        ***        ",
+            "       *****       ",
+            "      *******      ",
+            "     *********     ",
+            "    ***********    ",
+            "   *************   ",
+            "  ***************  ",
+            " ***************** ",
+            "*******************"
+            ], BuildTower::build(10));
+    }
 }
