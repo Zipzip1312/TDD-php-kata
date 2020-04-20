@@ -17,7 +17,7 @@ Strike score example
 1 => 10
 2 => 2
 3 => 4
-score = 10 + 2 + 4 + (2 + 4) = 16
+score = 10 + 2 + 4 + (2 + 4) = 22
 
 Spare score example
 1 => 5
@@ -33,14 +33,106 @@ use PHPUnit\Framework\TestCase;
 class BowlingGameTest extends TestCase
 {
     /** @test */
-    public function it_scores_a_gutter_game_as_zero()
+    function it_scores_a_gutter_game_as_zero()
     {
-        $game = new Game;
+        $game = new Game();
 
         foreach (range(1, 20) as $roll) {
             $game->roll(0);
         }
 
         $this->assertSame(0, $game->score());
+    }
+
+    /** @test */
+    function it_scores_all_ones()
+    {
+        $game = new Game();
+
+        foreach (range(1, 20) as $roll) {
+            $game->roll(1);
+        }
+
+        $this->assertSame(20, $game->score());
+    }
+
+    /** @test */
+    function it_awards_a_one_roll_bonus_for_every_spare()
+    {
+        $game = new Game();
+
+        $game->roll(5);
+        $game->roll(5); // spare
+
+        $game->roll(2);
+
+        foreach (range(1, 17) as $roll) {
+            $game->roll(0);
+        }
+
+        $this->assertSame(14, $game->score());
+    }
+
+    /** @test */
+    function it_awards_a_two_roll_bonus_for_every_strike()
+    {
+        $game = new Game();
+
+        $game->roll(10); // strike
+
+        $game->roll(2);
+        $game->roll(4);
+
+        foreach (range(1, 16) as $roll) {
+            $game->roll(0);
+        }
+
+        $this->assertSame(22, $game->score());
+    }
+
+    /** @test */
+    function a_spare_on_the_final_frame_grants_one_extra_ball()
+    {
+        $game = new Game();
+
+        foreach (range(1, 18) as $roll) {
+            $game->roll(0);
+        }
+
+        $game->roll(5);
+        $game->roll(5); // spare
+
+        $game->roll(6);
+
+        $this->assertSame(16, $game->score());
+    }
+
+    /** @test */
+    function a_strike_on_the_final_frame_grants_two_extra_balls()
+    {
+        $game = new Game();
+
+        foreach (range(1, 18) as $roll) {
+            $game->roll(0);
+        }
+
+        $game->roll(10); // strike
+
+        $game->roll(10);
+        $game->roll(10);
+
+        $this->assertSame(30, $game->score());
+    }
+
+    /** @test */
+    function it_scores_a_perfect_game()
+    {
+        $game = new Game();
+
+        foreach (range(1, 12) as $roll) {
+            $game->roll(10);
+        }
+
+        $this->assertSame(300, $game->score());
     }
 }
