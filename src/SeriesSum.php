@@ -4,7 +4,6 @@ namespace App;
 
 class SeriesSum
 {
-
     private $number;
 
     public function __construct(int $number)
@@ -17,7 +16,7 @@ class SeriesSum
         return $this->sum();
     }
 
-    private function sum()
+    private function sum(): string
     {
         $array    = [];
         $division = 1;
