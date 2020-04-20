@@ -31,4 +31,9 @@ class CountSmileys
 
         return $counter;
     }
+
+    public function countWithRegex(array $array): int
+    {
+        return sizeof(preg_grep('/^[:;][-~]?[)D]$/', $array));
+    }
 }

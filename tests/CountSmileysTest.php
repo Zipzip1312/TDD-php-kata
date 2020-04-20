@@ -21,14 +21,29 @@ use PHPUnit\Framework\TestCase;
 
 class CountSmileysTest extends TestCase
 {
-    /** @test */
-    public function it_returns_only_valid_smileys()
+    /**
+     * @test
+     * @dataProvider check
+     */
+    public function it_returns_only_valid_smileys($expected, $data)
     {
         $counter = new CountSmileys;
 
-        $this->assertEquals(0, $counter->count([]));
-        $this->assertEquals(4, $counter->count([':D',':~)',';~D',':)']));
-        $this->assertEquals(2, $counter->count([':)',':(',':D',':O',':;']));
-        $this->assertEquals(1, $counter->count([';]', ':[', ';*', ':$', ';-D', ':))']));
+        $this->assertEquals($expected, $counter->count($data));
+        $this->assertEquals($expected, $counter->countWithRegex($data));
+    }
+
+    public function check()
+    {
+        return [
+            [0, []],
+            [2, [':)', ';(', ';}', ':-D']],
+            [1, [';]', ':[', ';*', ':$', ';-D']],
+            [2, [':)',':(',':D',':O',':;']],
+            [3, [':-)',';~D',':-D',':_D']],
+            [1, [':---)','))',';~~D',';D']],
+            [3, [';~)',':)',':-)',':--)']],
+            [0, [':o)',':--D',';-~)']]
+        ];
     }
 }
