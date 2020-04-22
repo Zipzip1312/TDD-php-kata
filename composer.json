@@ -1,4 +1,9 @@
 {
+    "scripts": {
+        "test": [
+            "vendor/bin/phpunit tests"
+        ]
+    },
     "require": {
         "phpunit/phpunit": "^9.1"
     },
