@@ -24,12 +24,6 @@ for example "" or "1" or "1,2" as inputs.
 
 6. Numbers bigger than 1000 should be ignored, so adding 2 + 1001 = 2
 
-7. Delimiters can be of any length with the following format: "//[delimiter]\n" for example: "//[***]\n1***2***3" should return 6
-
-8. Allow multiple delimiters like this: "//[delim1][delim2]\n" for example "//[*][%]\n1*2%3" should return 6.
-
-9. Make sure you can also handle multiple delimiters with length longer than one char
-
  */
 
 use App\StringCalculator;
@@ -43,5 +37,56 @@ class StringCalculatorTest extends TestCase
         $calculator = new StringCalculator;
 
         $this->assertSame(0, $calculator->add(''));
+    }
+
+    /** @test */
+    public function it_finds_the_sum_of_a_single_number()
+    {
+        $calculator = new StringCalculator;
+
+        $this->assertSame(1, $calculator->add('1'));
+    }
+
+    /** @test */
+    public function it_finds_the_sum_of_any_amount_of_numbers()
+    {
+        $calculator = new StringCalculator;
+
+        $this->assertSame(17, $calculator->add('5,5,4,3'));
+    }
+
+    /** @test */
+    public function it_accepts_a_new_line_as_a_dilimiter()
+    {
+        $calculator = new StringCalculator;
+
+        $this->assertSame(10, $calculator->add('5\n5'));
+    }
+
+    /** @test */
+    public function negative_numbers_are_not_allowed()
+    {
+        $calculator = new StringCalculator;
+
+        $this->expectException(\Exception::class);
+
+        $calculator->add('5,-5');
+    }
+
+    /** @test */
+    public function numbers_greater_than_1000_ignored()
+    {
+        $calculator = new StringCalculator;
+
+        $this->assertSame(10, $calculator->add('5,5,1001,1002'));
+    }
+
+    /** @test */
+    public function it_supports_custom_dilimiters()
+    {
+        $calculator = new StringCalculator;
+
+        $this->assertSame(9, $calculator->add('//:\n5:4'));
+        $this->assertSame(3, $calculator->add('//;\n1;2'));
     }
 }
