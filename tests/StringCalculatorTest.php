@@ -1,7 +1,6 @@
 <?php
 
-/*
-String Calculator (https://osherove.com/tdd-kata-1)
+/* String Calculator (https://osherove.com/tdd-kata-1)
 
 1. Create a simple String calculator with a method signature: add (string $numbers)
 

@@ -1,8 +1,6 @@
 <?php
 
-/*
-Generate romain numerals from numbers
- */
+/* Generate romain numerals from numbers */
 
 use App\RomanNumerals;
 use PHPUnit\Framework\TestCase;

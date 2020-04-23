@@ -1,7 +1,6 @@
 <?php
 
-/*
-Bowling rules
+/* Bowling rules
 
 A game consists from 10 frames each frame has 1-2 rolls
 If you knock down all the pins with firs ball, you got a "strike"
