@@ -4,8 +4,18 @@ namespace App;
 
 class FizzBuzz
 {
-    public static function generate(int $number)
+    public static function convert(int $number)
     {
-        return 'fizz';
+        $result = '';
+
+        if ($number % 3 === 0) {
+            $result .= 'fizz';
+        }
+
+        if ($number % 5 === 0) {
+            $result .= 'buzz';
+        }
+
+        return $result ?: $number;
     }
 }
