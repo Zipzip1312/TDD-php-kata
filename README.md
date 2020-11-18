@@ -1,5 +1,3 @@
-Some cool kata that I had found somewhere on the web or they found me at the interview
-
 ##### Install dependencies
 `composer install`
 
